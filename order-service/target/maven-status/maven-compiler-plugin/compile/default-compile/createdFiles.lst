@@ -1,0 +1,5 @@
+com/chewy/order/integration/SqsPublisher.class
+com/chewy/order/model/OrderEvent.class
+com/chewy/order/service/OrderService.class
+com/chewy/order/OrderApplication.class
+com/chewy/order/controller/OrderController.class

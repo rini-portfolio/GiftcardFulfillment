@@ -1,0 +1,9 @@
+aws:
+  region: ${AWS_REGION:us-east-1}
+  sqs:
+    payment-queue-url: ${AWS_SQS_PAYMENT_QUEUE_URL:}
+
+# Fiserv integration
+fiserv:
+  url: ${FISERV_URL:}
+  api-key: ${FISERV_API_KEY:}

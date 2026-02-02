@@ -1,0 +1,4 @@
+aws:
+  region: ${AWS_REGION:us-east-1}
+  sqs:
+    order-queue-url: ${AWS_SQS_ORDER_QUEUE_URL:}

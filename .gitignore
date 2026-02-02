@@ -1,0 +1,27 @@
+# Java
+/target/
+*.class
+*.jar
+
+# Maven
+/.mvn/
+.maven/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+.pytest_cache/
+
+# IDE
+.vscode/
+.idea/
+.DS_Store
+
+# Docker
+*.log
+
+# OS
+Thumbs.db

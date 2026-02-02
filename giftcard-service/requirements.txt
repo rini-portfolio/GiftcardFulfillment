@@ -1,0 +1,8 @@
+fastapi
+boto3
+requests
+uvicorn[standard]
+
+# test deps
+pytest
+requests-mock

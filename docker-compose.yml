@@ -1,0 +1,86 @@
+version: '3.8'
+
+services:
+  localstack:
+    image: localstack/localstack:1.4
+    environment:
+      - SERVICES=sqs
+      - DEBUG=1
+      - DATA_DIR=/tmp/localstack/data
+    ports:
+      - "4566:4566"
+      - "4510-4559:4510-4559"
+    volumes:
+      - ./localstack/init:/etc/localstack/init/ready.d:ro
+      - localstack_data:/tmp/localstack
+
+  mock-fiserv:
+    image: python:3.11-slim
+    command: ["python", "/opt/mock_fiserv.py"]
+    volumes:
+      - ./giftcard-service/mock_fiserv.py:/opt/mock_fiserv.py:ro
+    ports:
+      - "9090:9090"
+    depends_on:
+      - localstack
+
+  order-service:
+    build:
+      context: ./order-service
+    image: order-service:local
+    environment:
+      - AWS_ACCESS_KEY_ID=test
+      - AWS_SECRET_ACCESS_KEY=test
+      - AWS_REGION=us-east-1
+      - AWS_SQS_ORDER_QUEUE_URL=http://localstack:4566/000000000000/order-queue
+    ports:
+      - "8080:8080"
+    depends_on:
+      - localstack
+
+  payment-service:
+    build:
+      context: ./payment-service
+    image: payment-service:local
+    environment:
+      - AWS_ACCESS_KEY_ID=test
+      - AWS_SECRET_ACCESS_KEY=test
+      - AWS_REGION=us-east-1
+      - AWS_SQS_PAYMENT_QUEUE_URL=http://localstack:4566/000000000000/payment-queue
+    ports:
+      - "8081:8080"
+    depends_on:
+      - localstack
+
+  giftcard-service:
+    build:
+      context: ./giftcard-service
+    image: giftcard-service:local
+    environment:
+      - NOTIFICATION_QUEUE_URL=http://localstack:4566/000000000000/notify-queue
+      - FISERV_URL=http://mock-fiserv:9090/
+      - AWS_ACCESS_KEY_ID=test
+      - AWS_SECRET_ACCESS_KEY=test
+      - AWS_REGION=us-east-1
+    ports:
+      - "8000:8000"
+    depends_on:
+      - localstack
+      - mock-fiserv
+
+  notification-service:
+    build:
+      context: ./notification-service
+    image: notification-service:local
+    environment:
+      - NOTIFICATION_QUEUE_URL=http://localstack:4566/000000000000/notify-queue
+      - AWS_ACCESS_KEY_ID=test
+      - AWS_SECRET_ACCESS_KEY=test
+      - AWS_REGION=us-east-1
+    ports:
+      - "8002:8002"
+    depends_on:
+      - localstack
+
+volumes:
+  localstack_data:

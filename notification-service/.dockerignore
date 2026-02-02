@@ -1,0 +1,8 @@
+# Ignore test files and cache
+__pycache__/
+.pytest_cache/
+*.pyc
+.coverage
+htmlcov/
+.venv
+venv/
