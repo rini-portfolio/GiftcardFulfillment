@@ -2,6 +2,14 @@
 
 A microservices-based giftcard fulfillment platform built with Spring Boot, Python FastAPI, and AWS SQS, featuring third-party Fiserv integration for balance validation and giftcard issuance.
 
+## Case Study — Gift Card Purchase & Fulfillment Flow
+
+Designed scalable microservices architecture with API contracts and deployment automation.
+
+**Tech:** Java, Python, Spring Boot, Docker, Kubernetes, AWS
+
+**View Case Study:** https://github.com/rini-portfolio/techportfolio/blob/main/case_studies/giftcard_purchase_fulfillment.md
+
 ## 📋 Architecture
 
 ```
