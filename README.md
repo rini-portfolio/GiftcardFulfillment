@@ -367,6 +367,15 @@ For local development, a mock Fiserv server is included in `giftcard-service/moc
 
 To use the actual Fiserv API, update the `FISERV_URL` environment variable.
 
+### Mock FedEx Server (Prototype)
+A lightweight FedEx mock is included in `mock-fedex/mock_fedex.py` for local testing of fulfillment flows:
+
+- **Fulfillment Endpoint:** `POST /fulfill` → returns JSON `{ "status": "ACK", "trackingId": "FDX-MOCK-..." }`
+- **Port:** 9091
+
+Order Service now persists orders (H2 in-memory) and listens for Payment events from SQS. On `PAID` payments the Order Service calls the FedEx mock to create a fulfillment and stores the `trackingId` on the `Order` record. Use the `GET /orders/{orderId}` endpoint to inspect order state.
+
+
 ---
 
 ## 📊 Data Flow Example
