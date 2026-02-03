@@ -2,3 +2,17 @@ aws:
   region: ${AWS_REGION:us-east-1}
   sqs:
     order-queue-url: ${AWS_SQS_ORDER_QUEUE_URL:}
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:orders;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driverClassName: org.h2.Driver
+    username: sa
+    password: 
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+
+# Payment queue to listen for payment events
+aws.sqs.payment-queue-url: ${AWS_SQS_PAYMENT_QUEUE_URL:}

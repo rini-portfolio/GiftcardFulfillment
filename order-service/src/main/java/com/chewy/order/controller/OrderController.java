@@ -24,4 +24,11 @@ public class OrderController {
 		return ResponseEntity.accepted().build();
 	}
 
+    @org.springframework.web.bind.annotation.GetMapping("/{orderId}")
+    public ResponseEntity<?> getOrder(@org.springframework.web.bind.annotation.PathVariable String orderId) {
+        var order = orderService.getOrder(orderId);
+        if (order == null) return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(order);
+    }
+
 }
