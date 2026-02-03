@@ -1,8 +1,0 @@
-/Users/rini/Desktop/giftcard-fulfillment-platform/payment-service/src/main/java/com/chewy/payment/integration/FiservService.java
-/Users/rini/Desktop/giftcard-fulfillment-platform/payment-service/src/main/java/com/chewy/payment/listener/PaymentListener.java
-/Users/rini/Desktop/giftcard-fulfillment-platform/payment-service/src/main/java/com/chewy/payment/model/PaymentEvent.java
-/Users/rini/Desktop/giftcard-fulfillment-platform/payment-service/src/main/java/com/chewy/payment/configuration/SqsConfig.java
-/Users/rini/Desktop/giftcard-fulfillment-platform/payment-service/src/main/java/com/chewy/payment/integration/SqsPublisher.java
-/Users/rini/Desktop/giftcard-fulfillment-platform/payment-service/src/main/java/com/chewy/payment/PaymentApplication.java
-/Users/rini/Desktop/giftcard-fulfillment-platform/payment-service/src/main/java/com/chewy/payment/integration/FiservClient.java
-/Users/rini/Desktop/giftcard-fulfillment-platform/payment-service/src/main/java/com/chewy/payment/service/PaymentService.java
